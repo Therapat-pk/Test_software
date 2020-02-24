@@ -10,12 +10,12 @@ def index(request):
             x=Varible.cleaned_data.get("x")
             y=Varible.cleaned_data.get("y")
             resuit=x+y
-            Varible_to_Calcular.resuit=resuit
-            Varible.save()
-            return render(request, 'lecture.html',{"form":Varible , 'resuit':resuit})   
+            #Varible_to_Calcular.resuit=resuit
+            #Varible.save()
+            return render(request, 'index.html',{"form":Varible , 'resuit':resuit})   
     else:
-        Varible=Varible_Forms(request.POST)
-    return render(request, 'lecture.html',{"form":Varible})   
+        Varible=Varible_Forms()
+    return render(request, 'index.html',{"form":Varible})   
 
 
 

@@ -3,5 +3,5 @@ from .models import *
 
 class Varible_Forms(ModelForm):
    class Meta:
-      model = Lecture
+      model = Varible_to_Calcular
       fields = ["x","y"]
