@@ -9,7 +9,6 @@ def index(request):
             Mark=i
     if request.method == 'POST' and Mark in request.POST:
         
-        
         Varible=Varible_Forms(request.POST)
         if Varible.is_valid():
             History_dict={}
@@ -32,13 +31,16 @@ def index(request):
                 resuit=x/y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="/")
                 Save_daa.save()
-            elif Mark=="continue" and resuit.is_valid():
-                print(5)
+            elif Mark=="continue":
+                    resuit=Varible_to_Calcular.objects.get(pk=Varible_to_Calcular.objects.all().count())
+                    resuit.resuit
+                    #resuit.get(resuit)
+                    Varible=Varible_Forms({"x":resuit})
+                    return render(request, 'index.html',{"form":Varible , 'resuit':resuit})
 
-            for i in Varible_to_Calcular.objects.all():
-                History_dict[i]=[i.x,i.Symbol,i.y,i.resuit]
-                #History_dict={i:[i.x,i.Symbol,i.y,i.resuit]}
             
+                
+
             return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST,'model':History_dict.values(),"num":0}) 
     #elif request.method == 'POST' and "plus" in request.POST:
     #if request.method == 'POST' and "plus" in request.POST:
