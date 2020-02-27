@@ -20,6 +20,8 @@ from Calcularter_GET import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/POST/',views.index,name="index"),
-    path("/GET/",include('Calcularter_GET.urls'))
+    path('post/',views.index,name="index"),
+    path("",views.home,name="home"),
+    path("get/",include('Calcularter_GET.urls')),
+    path("about/",views.about,name="about")
 ]

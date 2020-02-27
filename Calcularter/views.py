@@ -4,7 +4,7 @@ from .models import *
 
 # Create your views here.
 def index(request):
-    for i in ['plus',"minus","multiply","divide","history"]:
+    for i in ['plus',"minus","multiply","divide","history","continue"]:
         if i in request.POST:
             Mark=i
     if request.method == 'POST' and Mark in request.POST:
@@ -19,7 +19,7 @@ def index(request):
                 resuit=x+y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="+")
                 Save_daa.save()
-                return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST})   
+                #return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST})   
             elif Mark=="minus":
                 resuit=x-y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="-")
@@ -32,6 +32,9 @@ def index(request):
                 resuit=x/y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="/")
                 Save_daa.save()
+            elif Mark=="continue" and resuit.is_valid():
+                print(5)
+
             for i in Varible_to_Calcular.objects.all():
                 History_dict[i]=[i.x,i.Symbol,i.y,i.resuit]
                 #History_dict={i:[i.x,i.Symbol,i.y,i.resuit]}
@@ -43,6 +46,12 @@ def index(request):
     else:
         Varible=Varible_Forms()
     return render(request, 'index.html',{"form":Varible})   
+
+def home(request):
+    return render(request, 'home.html')   
+def about(request):
+    return render(request, 'about.html')   
+
 
 
 

@@ -2,16 +2,13 @@
     {% csrf_token %}
     {{form}}
     <p>{{resuit}}</p>
+    <input type="submit" name="continue" value="continue">
     {{p}}
     <input type="submit" name="plus"value="+">
     <input type="submit" name="minus" value="-"">
     <input type="submit" name="multiply" value="x">
     <input type="submit" name="divide" value="/">
-    {%for i in model%}
-        <a href="">{{i}}</a>
 
-
-    {%endfor%}
  
 
 

@@ -7,6 +7,7 @@ from .models import *
 
 # Create your views here.
 def index_GET(request):
+    Mark=""
     for i in ['plus',"minus","multiply","divide","history"]:
         if i in request.GET:
             Mark=i
@@ -22,7 +23,7 @@ def index_GET(request):
                 resuit=x+y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="+")
                 Save_daa.save()
-                return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST})   
+                #return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST})   
             elif Mark=="minus":
                 resuit=x-y
                 Save_daa=Varible_to_Calcular(x=x,y=y,resuit=resuit,Symbol="-")
@@ -39,13 +40,13 @@ def index_GET(request):
                 History_dict[i]=[i.x,i.Symbol,i.y,i.resuit]
                 #History_dict={i:[i.x,i.Symbol,i.y,i.resuit]}
             
-            return render(request, 'index.html',{"form":Varible , 'resuit':resuit,"p":request.POST,'model':History_dict.values(),"num":0}) 
+            return render(request, 'index_GET.html',{"form":Varible , 'resuit':resuit,"p":request.POST,'model':History_dict.values(),"num":0}) 
     #elif request.method == 'POST' and "plus" in request.POST:
     #if request.method == 'POST' and "plus" in request.POST:
     #if request.method == 'POST' and "plus" in request.POST:
     else:
         Varible=Varible_Forms()
-    return render(request, 'index.html',{"form":Varible})   
+    return render(request, 'index_GET.html',{"form":Varible , "Mark":request.GET})   
 
 
 
