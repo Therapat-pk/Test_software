@@ -1,16 +1,19 @@
+
+
+# Create your views here.
 from django.shortcuts import render
 from .forms import *
 from .models import *
 
 # Create your views here.
-def index(request):
+def index_GET(request):
     for i in ['plus',"minus","multiply","divide","history"]:
-        if i in request.POST:
+        if i in request.GET:
             Mark=i
-    if request.method == 'POST' and Mark in request.POST:
+    if request.method == 'GET' and Mark in request.GET:
         
         
-        Varible=Varible_Forms(request.POST)
+        Varible=Varible_Forms(request.GET)
         if Varible.is_valid():
             History_dict={}
             x=Varible.cleaned_data.get("x")
